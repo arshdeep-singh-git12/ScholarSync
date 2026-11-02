@@ -57,7 +57,39 @@ ScholarSync provides dedicated independent ports for each role and portal, all c
 
 ---
 
-## 3. Object-Oriented Programming (OOP) Architecture
+## 3. Clean Project Structure
+
+```
+ScholarSync/
+├── backend/                       # Spring Boot 3 Java backend (REST API, DAOs, Services)
+│   ├── pom.xml                    # Maven build configuration
+│   └── src/                       # Java source code & application properties
+├── database/                      # SQL schema and migration scripts
+│   ├── schema.sql                 # Base tables and relational constraints
+│   ├── seed_data.sql              # Initial demo users and records
+│   ├── setup_all.sql              # Consolidated one-click database setup
+│   ├── supabase_schema.sql        # Supabase PostgreSQL schema
+│   └── migration_*.sql            # Incremental feature migrations
+├── frontend/                      # Multi-portal web clients (HTML5/CSS3/Vanilla JS)
+│   ├── admin.html                 # Admin portal
+│   ├── index.html                 # Login & gateway portal
+│   ├── registrar.html             # Registrar portal
+│   ├── student.html               # Student portal
+│   ├── verify.html                # Public certificate verification portal
+│   ├── serve_portals.py           # Multi-port local server script
+│   ├── css/                       # Stylesheets
+│   └── js/                        # Portal scripts and API clients
+├── maven/                         # Bundled Apache Maven 3.9.9 distribution
+├── .env.example                   # Template for environment configuration
+├── .gitignore                     # Git ignore rules (ignores .env, build artifacts)
+├── README.md                      # Project documentation
+├── SYSTEM_DESIGN_AND_EXTENSIONS.md# Architecture & design documentation
+└── run.bat                        # Unified one-click multi-portal launcher
+```
+
+---
+
+## 4. Object-Oriented Programming (OOP) Architecture
 
 The application is structured to explicitly demonstrate the four pillars of Object-Oriented Programming alongside modern enterprise design patterns:
 
@@ -110,17 +142,22 @@ To prevent race conditions during high-volume registration periods (e.g., two st
 
 ---
 
-## 4. Quick Start with One-Click Batch Script
+## 5. Quick Start with One-Click Batch Script
 
 The system includes a single, clean batch launcher: **`run.bat`**.
 
 ### How to Run:
-1. Ensure your Supabase credentials are saved in [`.env`](.env):
+1. Ensure your Supabase credentials are configured in `.env` (copy from [`.env.example`](.env.example) if starting fresh):
+   ```bash
+   copy .env.example .env
+   ```
+   Configure your credentials:
    ```properties
    SUPABASE_PROJECT_REF=your_project_reference_id
    SUPABASE_DB_PASSWORD=your_database_password
    ```
-2. Double-click **`run.bat`** in the project root.
+   *(Note: `.env` is git-ignored to prevent credential exposure.)*
+2. Double-click **`run.bat`** in the project root (or run it in terminal).
 3. The servers will initialize in the background, and the interactive **Control Center** will display:
 
 ```
@@ -159,7 +196,7 @@ Select an option (0-5, A):
 
 ---
 
-## 5. Demonstration Credentials
+## 6. Demonstration Credentials
 
 | Role | Username | Password | Port / Direct URL | Capabilities |
 | :--- | :--- | :--- | :--- | :--- |
@@ -171,9 +208,9 @@ Select an option (0-5, A):
 
 ---
 
-## 6. Functional Workflow & Lifecycle
+## 7. Functional Workflow & Lifecycle
 
-### 6.1 Course Enrollment & Drop State Machine
+### 7.1 Course Enrollment & Drop State Machine
 ```
 [Student Request] ──────> PENDING ───────> [Registrar Approves] ──────> APPROVED (Seat Held)
                                   │
@@ -184,7 +221,7 @@ Select an option (0-5, A):
                                         └──> [Registrar Rejects] ─────> DROP_REJECTED (Stays Enrolled)
 ```
 
-### 6.2 Assessment & Certificate Issuance
+### 7.2 Assessment & Certificate Issuance
 1. Student accesses approved course content modules.
 2. Completing required lessons unlocks course quizzes.
 3. Quizzes are submitted and automatically evaluated on the server (options shuffled, correct answers withheld until post-submission review).
@@ -193,7 +230,7 @@ Select an option (0-5, A):
 
 ---
 
-## 7. REST API Endpoints Overview
+## 8. REST API Endpoints Overview
 
 | HTTP Method | Route | Access Level | Description |
 | :--- | :--- | :--- | :--- |
@@ -217,7 +254,7 @@ Select an option (0-5, A):
 
 ---
 
-## 8. Viva & Evaluation Key Discussion Points
+## 9. Viva & Evaluation Key Discussion Points
 
 1. **Why Raw JDBC instead of Spring Data JPA/Hibernate?**  
    Raw JDBC demonstrates fundamental database programming concepts: explicit transaction boundary management, custom connection lifecycle handling, fine-grained prepared statements, and direct control over lock escalation (`SELECT ... FOR UPDATE`), which are often obscured by ORM abstraction layers.

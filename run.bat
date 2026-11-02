@@ -7,19 +7,8 @@ color 0B
 :: 1. Resolve Project Root Directory
 :: -------------------------------------------------------------------------
 set "BASE_DIR=%~dp0"
-if exist "%BASE_DIR%backend" (
-    set "PROJECT_ROOT=%BASE_DIR%"
-) else if exist "%BASE_DIR%ScholarSync\backend" (
-    set "PROJECT_ROOT=%BASE_DIR%ScholarSync\"
-) else (
-    set "PROJECT_ROOT=%BASE_DIR%"
-)
-
+set "PROJECT_ROOT=%BASE_DIR%"
 set "ENV_FILE=%BASE_DIR%.env"
-if not exist "%ENV_FILE%" (
-    if exist "%PROJECT_ROOT%.env" set "ENV_FILE=%PROJECT_ROOT%.env"
-)
-
 set "PROP_FILE=%PROJECT_ROOT%backend\src\main\resources\application.properties"
 set "SERVER_SCRIPT=%PROJECT_ROOT%frontend\serve_portals.py"
 
@@ -89,12 +78,8 @@ timeout /t 1 /nobreak >nul
 :: 4. Locate Bundled Maven
 :: -------------------------------------------------------------------------
 set "MVN_CMD="
-if exist "%PROJECT_ROOT%maven\bin\mvn.cmd" (
-    set "MVN_CMD=%PROJECT_ROOT%maven\bin\mvn.cmd"
-) else if exist "%BASE_DIR%maven\bin\mvn.cmd" (
+if exist "%BASE_DIR%maven\bin\mvn.cmd" (
     set "MVN_CMD=%BASE_DIR%maven\bin\mvn.cmd"
-) else if exist "D:\OOPS project\ScholarSync\maven\bin\mvn.cmd" (
-    set "MVN_CMD=D:\OOPS project\ScholarSync\maven\bin\mvn.cmd"
 ) else (
     set "MVN_CMD=mvn"
 )
