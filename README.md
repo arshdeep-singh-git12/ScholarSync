@@ -8,10 +8,10 @@
 
 ### Student / Project Submission Details
 - **Project Title:** ScholarSync: Enterprise Academic Course Registration & LMS Platform
-- **Student Name:** [Your Name Here]
-- **Roll Number / Student ID:** [Your Roll Number Here]
+- **Student Name:** Arshdeep Singh , Antariksh Pahuja , Amit Bir Singh ,Amandeep Singh 
+- **Roll Number / Student ID:** 2546077 , 2546070 , 2546058 , 2546056
 - **Department:** Department of Computer Science & Engineering
-- **Semester / Section:** [Semester & Section Here]
+- **Semester / Section:** CSE A (3rd Semester)
 - **Academic Year:** 2026-2027
 
 ---
